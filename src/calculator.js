@@ -1,15 +1,24 @@
 class Calculator {
     constructor() {
         this.slot = [];
+        this.lastVal = "";
+        
     }
     
     add() {
         let sum = 0;
 
         for (let i = 0; i < arguments.length; i++) {
-            sum += arguments[i];
-            this.lastVal = sum;
+            if (arguments[i] == "LAST") {
+                sum += this.lastValue();    
+            } else if (typeof(arguments[i]) == "string") {
+                let num = arguments[i].match(/\d+/g);
+                sum += this.get_slot(num);
+            } else {
+                sum += arguments[i];
+            }
         }
+        this.lastVal = sum;
         return sum;
     }
 
@@ -17,9 +26,17 @@ class Calculator {
         let product = 1;
 
         for (let i = 0; i < arguments.length; i++) {
-            product *= arguments[i];
-            this.lastVal = product;
+            if(arguments[i] == "LAST"){
+                product *= this.lastValue();
+            } else if(typeof(arguments[i]) == "string"){
+                let num = arguments[i].match(/\d+/g);
+                product *= this.get_slot(num);
+            } else {
+                product *= arguments[i];
+            }
+           
         }
+        this.lastVal = product;
         return product;
     }
 

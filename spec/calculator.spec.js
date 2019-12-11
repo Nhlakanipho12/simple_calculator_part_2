@@ -24,8 +24,7 @@ describe('add function', function () {
     it("should allow LAST to be used as parameter", () => {
         let calculator_instance_of = new Calculator();
         expect(calculator_instance_of.add(1, 2)).toEqual(3);
-        let LAST = calculator_instance_of.lastValue();
-        expect(calculator_instance_of.add(LAST, 5)).toEqual(8);
+        expect(calculator_instance_of.add("LAST", 5)).toEqual(8);
     });
     it('should be able to recall the last value and multiply to a new value', function () {
         expect(calculator_instance_of.add(5, 5, 4)).toBe(14);
@@ -74,12 +73,9 @@ describe('add function', function () {
         expect(calculator_instance_of.get_slot(1)).toEqual(3);
         expect(calculator_instance_of.get_slot(2)).toEqual(30);
         expect(calculator_instance_of.lastValue()).toEqual(300);
-        let LAST = calculator_instance_of.lastValue();
-        let SLOT_1 = calculator_instance_of.get_slot(1);
-        let SLOT_2 = calculator_instance_of.get_slot(2);
-        expect(calculator_instance_of.add(LAST, 10)).toEqual(310);
-        expect(calculator_instance_of.add(SLOT_1, 5)).toEqual(8);
-        expect(calculator_instance_of.multiply(SLOT_2, 2)).toEqual(60);
+        expect(calculator_instance_of.add("LAST", 10)).toEqual(310);
+        expect(calculator_instance_of.add("SLOT_1", 5)).toEqual(8);
+        expect(calculator_instance_of.multiply("SLOT_2", 2)).toEqual(60);
       });
 });
 
@@ -133,7 +129,7 @@ describe('add function', function () {
         let calculator_instance_of = new Calculator();
         expect(calculator_instance_of.multiply(1, 2)).toEqual(2);
         let LAST = calculator_instance_of.lastValue();
-        expect(calculator_instance_of.multiply(LAST, 5)).toEqual(10);
+        expect(calculator_instance_of.multiply("LAST", 5)).toEqual(10);
       });
     it('should be able to get last set value and multiply to last calculated value ', function () {
         expect(calculator_instance_of.multiply(5, 5, 4)).toBe(100);
